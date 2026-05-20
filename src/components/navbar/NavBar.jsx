@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 import ThemeToggle from "../ThemeToggle";
@@ -8,7 +9,10 @@ import NavLink from "./NavLink";
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const isLoggedIn = false;
+  const { data, error } = authClient.useSession();
+  console.log(data);
+
+  const isLoggedIn = data?.user;
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -40,7 +44,9 @@ const NavBar = () => {
           </button>
 
           {/* Logo */}
-          <h1 className="text-2xl font-bold text-[#00C853]">PlayNest</h1>
+          <Link href={`/`}>
+            <h1 className="text-2xl font-bold text-[#00C853]">PlayNest</h1>
+          </Link>
         </div>
 
         {/* Desktop Links */}
@@ -54,7 +60,7 @@ const NavBar = () => {
           <ThemeToggle />
 
           {isLoggedIn ? (
-            <AvatarMenu />
+            <AvatarMenu image={data?.user?.image} />
           ) : (
             <Link href="/login">
               <button className="px-4 py-1 bg-[#00C853] text-white rounded hover:bg-[#00B14F] transition-colors cursor-pointer">
