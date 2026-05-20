@@ -1,12 +1,9 @@
-import ThemeToggle from "@/components/ThemeToggle";
+import Hero from "@/components/hero/Hero";
 
 export default function Home() {
   return (
     <div>
-      <ThemeToggle />
-      <h1 className="text-3xl dark:text-white font-bold text-center">
-        Hello world!
-      </h1>
+      <Hero />
     </div>
   );
 }
