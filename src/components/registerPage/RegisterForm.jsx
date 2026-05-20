@@ -11,9 +11,9 @@ import {
 } from "@heroui/react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import GoogleSingIn from "./GoogleSingIn";
+import GoogleSingIn from "../loginPage/GoogleSingIn";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [showPassword, SetShowPassword] = useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -36,12 +36,46 @@ const LoginForm = () => {
     >
       <div className="mb-6">
         <h1 className="text-gray-800 dark:text-[#E8F0ED] text-2xl font-bold tracking-tight">
-          Welcome Back
+          Create Account
         </h1>
         <p className="text-gray-500 dark:text-[#8BA3A0] text-sm mt-1">
-          Sign in to continue booking
+          Join PlayNest today
         </p>
       </div>
+      <TextField
+        isRequired
+        name="name"
+        validate={(value) => {
+          if (value.length < 4) {
+            return "Name must be at least 4 characters";
+          }
+          return null;
+        }}
+      >
+        <Label>Name</Label>
+        <Input placeholder="Enter your Name" />
+        <FieldError />
+      </TextField>
+      <TextField
+        isRequired
+        name="image"
+        validate={(value) => {
+          try {
+            new URL(value);
+            const imageExtensions = /\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i;
+            if (!imageExtensions.test(value)) {
+              return "URL must be an image (jpg, png, webp...)";
+            }
+            return null;
+          } catch {
+            return "Enter a valid URL";
+          }
+        }}
+      >
+        <Label>Photo URL</Label>
+        <Input placeholder="Enter your photo url" />
+        <FieldError />
+      </TextField>
       <TextField
         isRequired
         name="email"
@@ -107,4 +141,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
