@@ -8,7 +8,7 @@ import NavLink from "./NavLink";
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   const navLinks = [
     { href: "/", label: "Home" },
