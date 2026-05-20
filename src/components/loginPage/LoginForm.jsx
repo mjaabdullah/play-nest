@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -9,23 +10,41 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleSingIn from "./GoogleSingIn";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [showPassword, SetShowPassword] = useState(false);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
+    const userData = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString();
+      userData[key] = value.toString();
     });
 
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const { data, error } = await authClient.signIn.email(
+      {
+        ...userData,
+      },
+      {
+        onRequest: (ctx) => {
+          //show loading
+        },
+        onSuccess: (ctx) => {
+          router.push("/");
+        },
+        onError: (ctx) => {
+          // display the error message
+          toast.warning(`Failed to create account: ${ctx.error.message}`);
+        },
+      },
+    );
   };
 
   return (

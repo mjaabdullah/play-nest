@@ -28,7 +28,6 @@ const RegisterForm = () => {
     formData.forEach((value, key) => {
       userData[key] = value.toString();
     });
-    console.log(userData);
     const { data, error } = await authClient.signUp.email(
       {
         ...userData,
