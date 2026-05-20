@@ -8,7 +8,7 @@ import NavLink from "./NavLink";
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -52,6 +52,7 @@ const NavBar = () => {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+
           {isLoggedIn ? (
             <AvatarMenu />
           ) : (

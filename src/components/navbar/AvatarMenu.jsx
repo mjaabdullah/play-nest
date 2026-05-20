@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const avatarLinks = [
   { href: "/my-bookings", label: "My Bookings" },

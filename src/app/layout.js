@@ -1,4 +1,5 @@
-import NavBar from "@/components/navbar/Nav";
+import Footer from "@/components/footer/Footer";
+import NavBar from "@/components/navbar/NavBar";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -26,8 +27,8 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col dark:bg-[#0A0F1E]">
         <NavBar />
-        {/* <Nav /> */}
         {children}
+        <Footer />
       </body>
     </html>
   );
