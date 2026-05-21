@@ -10,7 +10,6 @@ export const getAllFacilities = async () => {
 };
 
 export const postFacility = async (payload) => {
-  console.log(process.env.NEXT_PUBLIC_SERVER_API_URL, "hi url");
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_API_URL}/add-facility`,
     {
