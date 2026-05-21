@@ -76,7 +76,7 @@ const EditFacilityForm = ({ facility }) => {
       e.target.reset();
       router.push("/manage-facilities");
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Update failed");
+      toast.danger(err?.response?.data?.message || "Update failed");
     }
   };
 

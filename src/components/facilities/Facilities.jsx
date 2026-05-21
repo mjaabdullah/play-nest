@@ -13,7 +13,7 @@ const Facilities = async () => {
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
             Top-rated venues ready for your next match.
           </p>
-          <button>
+          <button className=" min-w-16">
             <Link
               href="/all-facilities"
               className="text-[#00C853] hover:text-[#009624]"

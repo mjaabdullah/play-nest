@@ -37,7 +37,7 @@ const FacilityCard = ({ facility }) => {
               ${price_per_hour}
               <span className="text-sm font-normal text-gray-400">/hr</span>
             </span>
-            <Link href={`/facilities/${_id}`}>
+            <Link href={`/facility/${_id}`}>
               <button
                 disabled={!available_slots.length}
                 className="px-4 py-1.5 bg-[#00C853] text-white text-sm rounded-lg hover:bg-[#00B14F] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
