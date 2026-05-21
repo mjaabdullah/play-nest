@@ -1,8 +1,15 @@
 import ManageFacilitiesCard from "@/components/manage/ManageFacilitiesCard";
+import { auth } from "@/lib/auth";
 import { getManageFacilities } from "@/lib/data";
+import { headers } from "next/headers";
 
 const ManageFacilitiesPage = async () => {
-  const myFacilities = await getManageFacilities();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const userId = session?.user?.id;
+
+  const myFacilities = await getManageFacilities(userId);
   return (
     <div className="container mx-auto px-4 py-5 ">
       <h1 className="text-2xl md:text-4xl font-bold mb-2.5 ">

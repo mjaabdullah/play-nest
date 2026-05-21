@@ -8,8 +8,8 @@ export const getAllFacilities = async () => {
   const res = await fetch(`${serverUrl}/all-facilities`);
   return res.json();
 };
-export const getManageFacilities = async () => {
-  const res = await fetch(`${serverUrl}/manage-facilities`);
+export const getManageFacilities = async (userId) => {
+  const res = await fetch(`${serverUrl}/manage-facilities/${userId}`);
   return res.json();
 };
 
