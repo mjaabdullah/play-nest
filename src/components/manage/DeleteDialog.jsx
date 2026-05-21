@@ -2,7 +2,7 @@
 
 import { AlertDialog, Button } from "@heroui/react";
 
-export default function DeleteDialog({ name }) {
+export default function DeleteDialog({ facility, handleDelete }) {
   return (
     <AlertDialog>
       <Button
@@ -24,8 +24,8 @@ export default function DeleteDialog({ name }) {
 
             <AlertDialog.Body>
               <p>
-                This will permanently delete <strong>{name}</strong> and all of
-                its data. This action cannot be undone.
+                This will permanently delete <strong>{facility?.name}</strong>{" "}
+                and all of its data. This action cannot be undone.
               </p>
             </AlertDialog.Body>
 
@@ -34,7 +34,13 @@ export default function DeleteDialog({ name }) {
                 Cancel
               </Button>
 
-              <Button slot="close" variant="danger">
+              <Button
+                onClick={() => {
+                  handleDelete(facility?._id);
+                }}
+                slot="close"
+                variant="danger"
+              >
                 Delete Facility
               </Button>
             </AlertDialog.Footer>

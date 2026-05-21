@@ -1,3 +1,4 @@
+import { deleteFacility } from "@/lib/action";
 import { MapPin, PencilToSquare } from "@gravity-ui/icons";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -50,7 +51,7 @@ const ManageFacilitiesCard = ({ facility }) => {
               Edit
             </Button>
           </Link>
-          <DeleteDialog name={name} />
+          <DeleteDialog facility={facility} handleDelete={deleteFacility} />
         </div>
       </div>
     </div>
