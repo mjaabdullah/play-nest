@@ -8,6 +8,10 @@ export const getAllFacilities = async () => {
   const res = await fetch(`${serverUrl}/all-facilities`);
   return res.json();
 };
+export const getManageFacilities = async () => {
+  const res = await fetch(`${serverUrl}/manage-facilities`);
+  return res.json();
+};
 
 export const postFacility = async (payload) => {
   const res = await fetch(
