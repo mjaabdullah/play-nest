@@ -1,5 +1,13 @@
 import axios from "axios";
-
+import { headers } from "next/headers";
+import { auth } from "./auth";
+const getMyToken = async () => {
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  return token;
+};
+const token = await getMyToken();
 const serverUrl = process.env.SERVER_API_URL;
 export const getFeaturedFacilities = async () => {
   const res = await fetch(`${serverUrl}/feature-facilities`);
@@ -7,17 +15,26 @@ export const getFeaturedFacilities = async () => {
 };
 
 export const getAllFacilities = async () => {
+  console.log(token);
   const res = await fetch(`${serverUrl}/all-facilities`);
   return res.json();
 };
 
 export const getFacilityById = async (id) => {
-  const res = await fetch(`${serverUrl}/facility/${id}`);
+  const res = await fetch(`${serverUrl}/facility/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   return res.json();
 };
 
 export const getManageFacilities = async (userId) => {
-  const res = await fetch(`${serverUrl}/manage-facilities/${userId}`);
+  const res = await fetch(`${serverUrl}/manage-facilities/${userId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   return res.json();
 };
 
@@ -26,7 +43,10 @@ export const postFacility = async (payload) => {
     `${process.env.NEXT_PUBLIC_SERVER_API_URL}/add-facility`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     },
   );
