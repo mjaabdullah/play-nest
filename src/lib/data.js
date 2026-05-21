@@ -41,12 +41,17 @@ export const editFacility = async (id, editedFacility) => {
   return res;
 };
 
-
-
 export const bookingHandle = async (data) => {
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_SERVER_API_URL}/booking`,
     data,
+  );
+  return res;
+};
+
+export const getBookingData = async (id) => {
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_SERVER_API_URL}/booking/${id}`,
   );
   return res;
 };
