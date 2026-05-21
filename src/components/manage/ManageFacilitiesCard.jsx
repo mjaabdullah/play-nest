@@ -41,7 +41,7 @@ const ManageFacilitiesCard = ({ facility }) => {
           </span>
         </div>
         <div className="grid grid-cols-2 gap-2.5 justify-center pt-3">
-          <Link href={`/`}>
+          <Link href={`/manage-facilities/edit/${_id}`}>
             <Button
               fullWidth
               className={`text-[#00C853] dark:bg-gray-200 rounded-lg`}
