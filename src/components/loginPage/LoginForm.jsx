@@ -9,6 +9,7 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -41,7 +42,7 @@ const LoginForm = () => {
         },
         onError: (ctx) => {
           // display the error message
-          toast.warning(`Failed to create account: ${ctx.error.message}`);
+          toast.warning(`Failed to login: ${ctx.error.message}`);
         },
       },
     );

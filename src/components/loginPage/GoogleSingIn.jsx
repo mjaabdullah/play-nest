@@ -1,17 +1,17 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
-const GoogleSingIn = ({ callbackUrl }) => {
+const GoogleSingIn = () => {
   const router = useRouter();
-  // const handleGoogleSignIn = async () => {
-  //   await authClient.signIn.social({
-  //     provider: "google",
-  //     callbackURL: callbackUrl,
-  //   });
-  // };
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <>
       <div className="flex items-center gap-3 my-4">
@@ -23,7 +23,7 @@ const GoogleSingIn = ({ callbackUrl }) => {
       </div>
       <div>
         <Button
-          // onClick={handleGoogleSignIn}
+          onClick={handleGoogleSignIn}
           className="w-full"
           variant="tertiary"
         >

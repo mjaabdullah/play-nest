@@ -10,7 +10,7 @@ const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { data, error } = authClient.useSession();
-  console.log(data);
+
 
   const isLoggedIn = data?.user;
 
