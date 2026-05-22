@@ -23,11 +23,17 @@ const ManageFacilitiesPage = async () => {
           Total: {myFacilities.length}
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-5">
-        {myFacilities.map((facility) => (
-          <ManageFacilitiesCard key={facility._id} facility={facility} />
-        ))}
-      </div>
+      {myFacilities.length <= 0 ? (
+        <h1 className="text-4xl text-gray-500 text-center my-10">
+          No Facility Found!
+        </h1>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-5">
+          {myFacilities.map((facility) => (
+            <ManageFacilitiesCard key={facility._id} facility={facility} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

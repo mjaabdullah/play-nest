@@ -1,7 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { postFacility } from "@/lib/data";
+import { postFacility } from "@/lib/dataClient";
+
 import {
   Button,
   FieldError,
@@ -68,8 +69,8 @@ const AddFacilityForm = () => {
 
     try {
       const res = await postFacility(payload);
-      console.log(res, "res");
-      if (!res.ok) throw new Error("Failed to add facility");
+
+      if (!res.statusText) throw new Error("Failed to add facility");
 
       toast.success("Facility added successfully!");
       setSelectedSlots([]);

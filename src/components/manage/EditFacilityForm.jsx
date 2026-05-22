@@ -1,7 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { editFacility } from "@/lib/data";
+import { editFacility } from "@/lib/dataClient";
+
 import {
   Button,
   FieldError,

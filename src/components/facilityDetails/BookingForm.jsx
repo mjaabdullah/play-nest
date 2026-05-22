@@ -1,6 +1,7 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { bookingHandle } from "@/lib/data";
+import { bookingHandle } from "@/lib/dataClient";
+
 import { Clock } from "@gravity-ui/icons";
 import { Calendar, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -36,7 +37,7 @@ const BookingForm = ({ facility }) => {
     status: "pending",
   };
 
-  const handleConfirm = async () => {
+  const handleConfirm = async (e) => {
     if (!bookingDate || !timeSlot || !hours) {
       alert("Please fill in all fields.");
       return;
@@ -44,10 +45,10 @@ const BookingForm = ({ facility }) => {
 
     try {
       await bookingHandle(bookingPayload);
-
       toast.success("Booking successfully completed!");
-      setSelectedSlots([]);
-      e.target.reset();
+      setBookingDate("");
+      setTimeSlot("");
+      setHours("");
       router.push("/my-bookings");
     } catch (err) {
       toast.danger(err?.response?.data?.message || "Booking failed");
