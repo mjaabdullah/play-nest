@@ -3,10 +3,11 @@ import { Button, SearchField } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-const Search = () => {
+const Search = ({ search: initialSearch }) => {
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialSearch || "");
   const searchParams = useSearchParams();
+
   const handleSearch = () => {
     const params = new URLSearchParams(searchParams.toString());
     if (!search) {
@@ -19,7 +20,11 @@ const Search = () => {
   return (
     <div className="flex items-center gap-2">
       {" "}
-      <SearchField name="search" onChange={(value) => setSearch(value)}>
+      <SearchField
+        name="search"
+        onChange={(value) => setSearch(value)}
+        defaultValue={search}
+      >
         <SearchField.Group>
           <SearchField.SearchIcon />
           <SearchField.Input className="w-70" placeholder="Search facilities" />

@@ -3,14 +3,14 @@
 import { ListBox, Select } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const Filter = ({ categories }) => {
+const Filter = ({ categories, category }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   return (
     <Select
-      defaultValue="all"
+      defaultValue={category || "all"}
       className="w-[256px]"
-      defaultSelectedKeys={["all"]}
+      defaultSelectedKeys={[category || "all"]}
       onChange={(e) => {
         const params = new URLSearchParams(searchParams.toString());
         if (!e || e === "all") {
