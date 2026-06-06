@@ -7,8 +7,26 @@ export const getFeaturedFacilities = async () => {
   return res.json();
 };
 
-export const getAllFacilities = async () => {
-  const res = await fetch(`${serverUrl}/all-facilities`);
+// export const getAllFacilities = async () => {
+//   const res = await fetch(`${serverUrl}/all-facilities`);
+//   return res.json();
+// };
+
+export const getAllFacilities = async (search = "", category = "") => {
+  const params = new URLSearchParams();
+
+  if (search) params.append("search", search);
+  if (category) params.append("category", category);
+console.log(params, "params");
+  const queryString = params.toString();
+  const url = `${serverUrl}/all-facilities${queryString ? `?${queryString}` : ""}`;
+
+  const res = await fetch(url);
+  return res.json();
+};
+
+export const getFacilityCategories = async () => {
+  const res = await fetch(`${serverUrl}/facility-categories`);
   return res.json();
 };
 

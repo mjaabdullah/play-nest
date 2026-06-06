@@ -1,17 +1,50 @@
+"use client";
+
 import { ListBox, Select } from "@heroui/react";
-const Filter = ({ list }) => {
+import { useRouter, useSearchParams } from "next/navigation";
+
+const Filter = ({ categories }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   return (
-    <Select className="w-[256px]" placeholder="Select one">
+    <Select
+      defaultValue="all"
+      className="w-[256px]"
+      defaultSelectedKeys={["all"]}
+      onChange={(e) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (!e || e === "all") {
+          params.delete("category");
+        } else {
+          params.set("category", e);
+        }
+        router.push(`?${params.toString().toLowerCase()}`);
+      }}
+    >
       <Select.Trigger>
-        <Select.Value />
+        <Select.Value placeholder="Select one" />
         <Select.Indicator />
       </Select.Trigger>
       <Select.Popover>
-        <ListBox>
-          <ListBox.Item id="all" textValue="all">
+        <ListBox
+          onSelectionChange={(keys) => {
+            console.log("LISTBOX fired:", keys);
+          }}
+        >
+          <ListBox.Item key="all" id="all" textValue="All Facilities">
             All Facilities
             <ListBox.ItemIndicator />
           </ListBox.Item>
+          {categories.map((c) => (
+            <ListBox.Item
+              key={c.category}
+              id={c.category}
+              textValue={c.category}
+            >
+              {c.category}
+              <ListBox.ItemIndicator />
+            </ListBox.Item>
+          ))}
         </ListBox>
       </Select.Popover>
     </Select>

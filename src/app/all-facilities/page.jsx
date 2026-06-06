@@ -1,10 +1,13 @@
 import FacilityCard from "@/components/facilities/FacilityCard";
 import Filter from "@/components/facilities/Filter";
-import { getAllFacilities } from "@/lib/data";
+import { getAllFacilities, getFacilityCategories } from "@/lib/data";
 import { SearchField } from "@heroui/react";
 
-const AllFacilitiesPage = async () => {
-  const facilities = await getAllFacilities();
+const AllFacilitiesPage = async ({ searchParams }) => {
+  const { category, search } = await searchParams;
+
+  const facilities = await getAllFacilities(search, category);
+  const categories = await getFacilityCategories();
   return (
     <div className="container mx-auto px-4 py-10">
       <h1 className="text-4xl font-bold">All Facilities</h1>
@@ -20,7 +23,7 @@ const AllFacilitiesPage = async () => {
           </SearchField.Group>
         </SearchField>
 
-        <Filter />
+        <Filter categories={categories} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-5">
         {facilities.map((facility) => (
