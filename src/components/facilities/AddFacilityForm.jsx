@@ -70,14 +70,16 @@ const AddFacilityForm = () => {
     try {
       const res = await postFacility(payload);
 
-      if (!res.statusText) throw new Error("Failed to add facility");
+      // if (!res.statusText) throw new Error("Failed to add facility");
 
       toast.success("Facility added successfully!");
       setSelectedSlots([]);
       e.target.reset();
       router.push("/all-facilities");
     } catch (err) {
-      toast.warning(`Something went wrong: ${err.message}`);
+      toast.warning(
+        `Something went wrong: ${err.response?.data?.message || err.message}`,
+      );
     }
   };
 

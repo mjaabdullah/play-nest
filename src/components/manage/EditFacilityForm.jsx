@@ -264,7 +264,7 @@ const EditFacilityForm = ({ facility }) => {
           fullWidth
           type="submit"
         >
-          Edit Facility
+          Update Facility
         </Button>
       </Form>
     </div>
