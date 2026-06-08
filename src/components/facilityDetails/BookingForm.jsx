@@ -97,7 +97,7 @@ const BookingForm = ({ facility }) => {
             <select
               value={timeSlot}
               onChange={(e) => setTimeSlot(e.target.value)}
-              className="w-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/8 rounded-xl px-4 py-3 text-gray-800 dark:text-white/70 text-sm appearance-none focus:outline-none focus:border-[#009708]/60 focus:ring-1 focus:ring-[#009708]/20 transition-all pr-8"
+              className="w-full bg-white dark:bg-[#1A2235] border border-gray-200 dark:border-white/8 rounded-xl px-4 py-3 text-gray-800 dark:text-white/70 text-sm appearance-none focus:outline-none focus:border-[#009708]/60 focus:ring-1 focus:ring-[#009708]/20 transition-all pr-8"
             >
               <option value="" disabled>
                 Select a slot

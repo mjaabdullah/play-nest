@@ -58,60 +58,64 @@ const MyBookingPage = async () => {
             </div>
 
             {/* Mobile View - Cards */}
-            <div className="md:hidden w-full space-y-4">
+            <div className="md:hidden w-full space-y-3 px-2 ">
               {data.map((item) => (
                 <div
                   key={item._id}
-                  className="bg-white rounded-lg shadow-md p-4 border border-gray-200"
+                  className="bg-white dark:bg-[#1A2235] rounded-xl shadow-sm border border-gray-100 dark:border-white/8 overflow-hidden"
                 >
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-start">
-                      <h3 className="font-semibold text-lg text-gray-800">
-                        {item.facility_name}
-                      </h3>
-                      <BookingDeleteDialog
-                        facility={item}
-                        handleDelete={deleteBooking}
-                      />
+                  {/* Card Header */}
+                  <div className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-[#1A2235] border-b border-gray-100 dark:border-white/8">
+                    <h3 className="font-bold text-base text-gray-900 dark:text-gray-100 truncate pr-2">
+                      {item.facility_name}
+                    </h3>
+                    <span
+                      className={`shrink-0 inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${
+                        item.status === "confirmed"
+                          ? "bg-green-100 text-green-700"
+                          : item.status === "pending"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-red-100 text-red-700"
+                      }`}
+                    >
+                      {item.status.charAt(0).toUpperCase() +
+                        item.status.slice(1)}
+                    </span>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="px-4 py-3 space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="text-gray-400">📅</span>
+                      <span className="font-medium text-gray-500">Date:</span>
+                      <span className="text-gray-800 dark:text-gray-300">
+                        {item.booking_date}
+                      </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 text-sm">
-                      <div>
-                        <p className="text-gray-500 font-medium">
-                          Booking Date
-                        </p>
-                        <p className="text-gray-800">{item.booking_date}</p>
-                      </div>
-
-                      <div>
-                        <p className="text-gray-500 font-medium">Time Slot</p>
-                        <p className="text-gray-800">{item.time_slot}</p>
-                      </div>
-
-                      <div>
-                        <p className="text-gray-500 font-medium">Price</p>
-                        <p className="text-gray-800 font-semibold">
-                          {item.total_price}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="text-gray-500 font-medium">Status</p>
-                        <p className="text-gray-800">
-                          <span
-                            className={`inline-block px-2 py-1 rounded text-xs font-medium ${
-                              item.status === "confirmed"
-                                ? "bg-green-100 text-green-800"
-                                : item.status === "pending"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
-                            }`}
-                          >
-                            {item.status}
-                          </span>
-                        </p>
-                      </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="text-gray-400">🕐</span>
+                      <span className="font-medium text-gray-500">Time:</span>
+                      <span className="text-gray-800 dark:text-gray-300">
+                        {item.time_slot}
+                      </span>
                     </div>
+
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="text-gray-400">💰</span>
+                      <span className="font-medium text-gray-500">Price:</span>
+                      <span className="font-bold text-gray-900 dark:text-gray-300">
+                        $ {item.total_price}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Footer */}
+                  <div className="px-4 py-2 border-t border-gray-100 dark:border-white/8 flex justify-end">
+                    <BookingDeleteDialog
+                      facility={item}
+                      handleDelete={deleteBooking}
+                    />
                   </div>
                 </div>
               ))}
