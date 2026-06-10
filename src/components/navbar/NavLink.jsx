@@ -7,7 +7,7 @@ const NavLink = ({ href, label }) => {
   const isActive = pathName === href;
   return (
     <li
-      className={`pb-1 ${isActive ? " p-1 dark:bg-[#111827] bg md:border-b-2 md:border-[#00C853]" : ""}`}
+      className={`pb-1 ${isActive ? " p-1 md:border-b-2 md:border-[#00C853]" : ""}`}
     >
       <Link href={href}>{label}</Link>
     </li>
